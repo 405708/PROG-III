@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>New Pilot</title>
+</head>
+<body>
+    <!--Agregar onchange al select, con una funcion serviceOnchange(event)-->
+    <!--Creo constante y traigo del document, y en un alert traigo el valor con event.target.value-->
+
+    <div class="container">
+        <form 
+        method="get"
+        class="row g-3"
+        novalidate
+        >
+            <h2>Alta de Piloto</h2>
+            <div class="col-6">
+              <label for="inputName" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="inputName" name="name">
+            </div>
+            <div class="col-6">
+              <label for="inputApellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="inputApellido" name="apellido">
+            </div>
+            <div class="col-6">
+              <label for="inputHoras" class="form-label">Cant. horas vuelo</label>
+              <input type="number" class="form-control" id="inputHoras" name="horas">
+            </div>
+    
+            <div class="col-6">
+                <label for="gridRadios1" class="form-label">Tipo Vuelo</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                  <label class="form-check-label" for="gridRadios1">
+                    Cabotaje
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                  <label class="form-check-label" for="gridRadios2">
+                    Internacional
+                  </label>
+                </div>
+            </div>    
+            <div class="col-12">
+              <label for="inputState" class="form-label">Nacionalidad</label>
+              <select id="inputSelect" class="form-select" name="select">
+                <option selected value="0">Seleccionar</option>
+                <option value="1">Argentina</option>
+                <option value="2">Uruguay</option>
+                <option value="3">Chile</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+            <div>
+              <a href="login.html">Volver</a>
+            </div>
+
+            <!--Container para los errores-->
+            <div id=”errorContainer”>
+              <p>Porfavor arregle lo siguiente: </p>
+              <label id="inputName-error" class="error" for="inputName">El campo Nombre es requerido</label>
+              <label id="inputApellido-error" class="error manual-error" for="inputApellido">El campo Apellido es requerido</label>
+              <label id="inputHoras-error" class="error" for="inputHoras">El campo Horas es requerido</label>
+              <label id="inputSelect-error" class="error" for="inputSelect">Seleccione Nacionalidad</label>
+            </div>
+          </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" crossorigin="anonymous"></script>
+    <script>
+
+      $("form").validate({
+        rules: {
+          name:{
+            required: true,
+            maxlength: 30,
+          },
+          apellido:{
+            required:true,
+            maxlength: 20,
+          },
+          horas:{
+            required:true,
+            minimohrs: 50
+          },
+          select:{
+            valorigual: "0"
+          }
+        },
+        messages:{
+          name:{
+            required: "El campo Nombre es requerido",
+            maxlength:"Maximo 30 caracteres",
+          },
+          apellido:{
+            required:"El campo Apellido es requerido",
+            maxlength:"Maximo 20 caracteres",
+          },
+          horas:{
+            required:"El campo Horas es requerido",
+            horas:"Minimo 50hrs"
+          },
+          select:{
+            valorigual: "Seleccione Nacionalidad"
+          }
+        },
+        submitHandler : function(form)
+        {
+          alert("Se dio de alta correctamente")
+          const name = $("#inputName")
+          const apellido = $("#inputApellido")
+          const horas = $("#inputHoras")
+          const select = $("#inputSelect")
+          localStorage.setItem("name", name.val())
+          localStorage.setItem("apellido", apellido.val())
+          localStorage.setItem("horas", horas.val())
+          localStorage.setItem("select", select.val())
+        }
+      })
+      
+      //Para validar el select
+      $.validator.addMethod("valorigual", function(value, element, arg){
+        return arg !== value;
+      }, "Valor no deberias ser igual a 0");
+
+      //Para validar minimo hrs
+      $.validator.addMethod("minimohrs", function(value){
+        return value > 50;
+      }, "Minimo 50 hrs")
+    </script>
+
+
+</body>
+</html>
