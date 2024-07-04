@@ -1,0 +1,13 @@
+QueryString
+
+Llevar string:
+ window.location.href = `altapiloto.html?email=${encodeURIComponent(email)}`;
+
+
+Traer String:
+function getQueryStringValue(key) {
+   return new URLSearchParams(window.location.search).get(key);}
+    
+// Obtener el email del query string y asignarlo al campo #email
+   var emailFromQueryString = getQueryStringValue('email');
+   $('#email').val(emailFromQueryString);

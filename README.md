@@ -6,7 +6,7 @@ NuGets:
 - Microsoft.entityFrameworkCore.Design
 - Microsoft.entityFrameworkCore.Tools
 - FluentValidations.AspNetCore
-- JWT
+- Microsoft.AspNetCore.Authentication.JwtBearer
 
 Powershell:
 - dotnet tool install --global dotnet-ef
