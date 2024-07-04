@@ -5,7 +5,7 @@ NuGets:
 - Microsoft.entityFrameworkCore.SqlServer
 - Microsoft.entityFrameworkCore.Design
 - Microsoft.entityFrameworkCore.Tools
-- FluentValidations
+- FluentValidations.AspNetCore
 - JWT
 
 Powershell:
@@ -16,4 +16,4 @@ Migrations:
 - dotnet ef database update
 
 Scaffolding:
-- dotnet ef dbcontext scaffold "Data Source=???" Microsoft.EntityFrameworkCore.SqlServer
+- dotnet ef dbcontext scaffold "Name=pilotoDB" Microsoft.EntityFrameworkCore.SqlServer -o Models
