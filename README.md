@@ -5,6 +5,7 @@ NuGets:
 - Microsoft.entityFrameworkCore.SqlServer
 - Microsoft.entityFrameworkCore.Design
 - Microsoft.entityFrameworkCore.Tools
+- Automapper
 - FluentValidations.AspNetCore
 - Microsoft.AspNetCore.Authentication.JwtBearer
 
@@ -16,4 +17,4 @@ Migrations:
 - dotnet ef database update
 
 Scaffolding:
-- dotnet ef dbcontext scaffold "Name=pilotoDB" Microsoft.EntityFrameworkCore.SqlServer -o Models
+- dotnet ef dbcontext scaffold "Name=nombreDB" Microsoft.EntityFrameworkCore.SqlServer -o Models
